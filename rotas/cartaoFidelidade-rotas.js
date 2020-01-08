@@ -6,7 +6,6 @@ const controle = require('../controle/cartaoFidelidade-controle');
 const autenticador = require('../middlewares/autenticador');
 
 let _ctrl = new controle();
-
 rota.get("/", _ctrl.get);
 rota.get('/buscarPorUsuario/:id',_ctrl.buscarPorUsuario);
 rota.get('/buscarPorEstabelecimento/:id',_ctrl.buscarPorEstabelecimento);
