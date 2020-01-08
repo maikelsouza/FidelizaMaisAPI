@@ -1,0 +1,20 @@
+{
+  "name": "cartaofidelidade.api",
+  "version": "1.0.0",
+  "description": "Api feita em nodeJs para a utilização do aplicativo de cartão fidelidade",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Maikel Joel de Souza",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.5.1",
+    "md5": "^2.2.1",
+    "mysql2": "^1.6.5",
+    "sequelize": "^5.21.1",
+    "sequelize-embed": "^2.1.1"
+  }
+}
