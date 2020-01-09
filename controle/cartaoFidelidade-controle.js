@@ -19,7 +19,7 @@ cartaoFidelidadeControle.prototype.post = async (req, res) =>{
 };
 
 cartaoFidelidadeControle.prototype.put = async (req, res) =>{ 
-    console.log('put'); 
+    console.log('put');
 };
 
 cartaoFidelidadeControle.prototype.get = async (req, res) =>{    
