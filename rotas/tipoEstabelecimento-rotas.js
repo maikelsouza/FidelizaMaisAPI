@@ -7,7 +7,6 @@ const autenticador = require('../middlewares/autenticador');
 
 let _ctrl = new controle();
 
-
 rota.get("/", _ctrl.buscarTodosAtivos);
 //rota.get('/:id',_ctrl.getById);
 //rota.post('/', _ctrl.post);
