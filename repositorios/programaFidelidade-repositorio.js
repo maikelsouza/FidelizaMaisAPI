@@ -1,20 +1,32 @@
 const model = require('../config/modelLoader');
-const campoItemProgramaFidelidade = require('./campoItemProgramaFidelidade-repositorio');
 const Op = model.Sequelize.Op;
 
 class programaFidelidadeRepositorio{
 
     constructor(){}
 
-    async update(id, data) {
-        model.ProgramaFidelidade.update(data,{
-            where: { id: id }   
-        });
-        let _campoRegistroCartaoFidelidade = new campoItemProgramaFidelidade();
-        await data.CampoRegistroCartaoFidelidades.forEach(element => {
-             _campoRegistroCartaoFidelidade.update(element.id,element);            
-        });
+
+    async update(id, data) {   
+        try{
+         return await model.sequelize.transaction(async(t) => {
+                await model.ProgramaFidelidade.destroy({where: {id}},{t}); 
+                await model.ProgramaFidelidade.create(data,{include: 
+                    { association: 'CampoItemProgramaFidelidades' }},
+                    {t});                
+            });   
+        }catch(err){
+            console.log('Erro ao tentar atualizar um ProgramaFidelidade e seus CampoItemProgramaFidelidades : ', err);
+            res.status(500).send({ message: 'Erro no processamento', error: err });
+        }    
     }
+
+    async delete(id) {             
+        model.ProgramaFidelidade.destroy({
+                  where: { 
+                      id: id 
+                    }   
+                });        
+        }
 
     async create(data){                                        
         model.ProgramaFidelidade.create(data,{include: { association: 'CampoItemProgramaFidelidades' }});
@@ -25,7 +37,7 @@ class programaFidelidadeRepositorio{
         ProgramaFidelidade.findByPk(id ,{
                 attributes: ['id', 'nome', 'descricao','dataExpiracao', 'ativo', 'regra'],
                 include: { association: 'CampoItemProgramaFidelidades',
-                           attributes: ['id', 'nome','descricao','dataExpiracao'], required: true
+                           attributes: ['id', 'nome','descricao','dataExpiracao','quantidadePontos'], required: true
                         },
                        // order: [[model.CampoItemProgramaFidelidade, 'createdAt', 'DESC']]
                         
