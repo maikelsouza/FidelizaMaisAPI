@@ -47,7 +47,8 @@ class estabelecimentoRepositorio{
                 })
             }
         
-        // Rever essa maneira de fazer update. Não está bom. 
+        // Rever essa maneira de fazer update. Não está bom. (Avaliar situação onde exclui e depois insere. Não esquecer do controle de transação 
+        // ver programaFidelidade-repositorio.js - update)
         async update(id, data) {
            model.Estabelecimento.update(data,{
                     where: { id: id }   
