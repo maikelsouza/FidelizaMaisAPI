@@ -13,7 +13,7 @@ module.exports = {
         allowNull: false
       },
       descricao: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(500)
       },
       dataExpiracao: {
         type: Sequelize.DATE
