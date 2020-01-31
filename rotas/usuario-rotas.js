@@ -14,7 +14,7 @@ rota.post('/autenticar', _ctrl.autenticar);
 
 rota.get("/",autenticador,_ctrl.get);
 rota.get('/:id',autenticador, _ctrl.getById);
-rota.post('/',  _ctrl.post);
+rota.post('/',  autenticador,_ctrl.post);
 rota.put('/:id',autenticador, _ctrl.update);
 //rota.delete('/:id', _ctrl.delete);
 

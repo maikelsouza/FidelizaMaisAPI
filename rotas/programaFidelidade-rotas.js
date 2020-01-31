@@ -7,12 +7,12 @@ const autenticador = require('../middlewares/autenticador');
 
 let _ctrl = new controle();
 
-rota.get("/", _ctrl.get);
-rota.get('/buscarPorUsuario/:id',_ctrl.buscarPorUsuario);
-rota.get('/buscarPorEstabelecimento/:id',_ctrl.buscarPorEstabelecimento);
-rota.get('/:id',_ctrl.getById);
-rota.post('/', _ctrl.post);
-rota.put('/:id',_ctrl.update);
+rota.get("/", autenticador,_ctrl.get);
+rota.get('/buscarPorUsuario/:id',autenticador,_ctrl.buscarPorUsuario);
+rota.get('/buscarPorEstabelecimento/:id',autenticador,_ctrl.buscarPorEstabelecimento);
+rota.get('/:id',autenticador,_ctrl.getById);
+rota.post('/', autenticador,_ctrl.post);
+rota.put('/:id',autenticador,_ctrl.update);
 
 
 module.exports = rota;
