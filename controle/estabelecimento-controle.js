@@ -39,4 +39,13 @@ estabelecimentoControle.prototype.delete = async (req, res) =>{
   controleBase.delete(_repo, req, res);    
 };
 
+estabelecimentoControle.prototype.buscarPorUsuario = async (req, res) =>{     
+  try {           
+    let data = await _repo.buscarPorUsuario(req.params.id);
+    res.status(200).send(data);
+  } catch (error) {      
+    res.status(500).send({ message: 'Erro no processamento', error: err });
+  }    
+};  
+
 module.exports = estabelecimentoControle;

@@ -2,8 +2,7 @@ const model = require('../config/modelLoader');
 const enderecoEstabelecimentoRepositorio = require('../repositorios/enderecoEstabelecimento-repositorio');
 const telefoneRepositorio = require('../repositorios/telefone-repositorio');
 const midiaSocialRepositorio = require('../repositorios/midiaSocial-repositorio');
-
-
+const Op = model.Sequelize.Op
 
 class estabelecimentoRepositorio{
 
@@ -65,6 +64,19 @@ class estabelecimentoRepositorio{
                           id: id 
                         }   
                     });        
+            }
+
+        async buscarPorUsuario(id) {
+            return await model.Estabelecimento.findAll(
+                {attributes: ['id', 'nome', 'ativo', 'cnpj', 'email'],
+                    where: {  
+                        [Op.and]: 
+                        [{usuarioId: id}, {ativo: true}]
+                    },
+                    order: [                
+                        ['nome', 'ASC']
+                    ]
+                });          
             }
 
          async saveOrUpdadeTelefone(telefone, id){

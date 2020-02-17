@@ -43,6 +43,15 @@ module.exports = {
           key: "id",
           as: "tipoEstabelecimentoId"          
         }
+      },
+      usuarioId: {
+        type: Sequelize.INTEGER,        
+        allowNull: false,
+        references: {
+          model: "Usuarios",
+          key: "id",
+          as: "usuarioId"                
+        }
       }
       
      
