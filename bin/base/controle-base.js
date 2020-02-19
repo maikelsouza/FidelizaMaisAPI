@@ -50,8 +50,7 @@ exports.getById = async (repository, req, res) => {
     try {        
         let id = req.params.id;        
         if (id) {
-            let data = await repository.getById(id);
-            console.log(data);                                        
+            let data = await repository.getById(id);            
             res.status(200).send(data);
         } else {
             res.status(400).send({ message: 'O parametro Id precisa ser informado.' });
