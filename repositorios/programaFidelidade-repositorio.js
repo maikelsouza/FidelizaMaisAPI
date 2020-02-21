@@ -35,7 +35,7 @@ class programaFidelidadeRepositorio{
      async getById(id) {
         return await model.
         ProgramaFidelidade.findByPk(id ,{
-                attributes: ['id', 'nome', 'descricao','dataExpiracao', 'ativo', 'regra'],
+                attributes: ['id', 'nome', 'descricao','dataExpiracao', 'ativo', 'regra','estabelecimentoId'],
                 include: { association: 'CampoItemProgramaFidelidades',
                            attributes: ['id', 'nome','descricao','dataExpiracao','quantidadePontos'], required: true
                         },
