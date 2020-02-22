@@ -23,7 +23,7 @@ class cartaoFidelidadeRepositorio{
      async getById(id) {
         return await model.
         CartaoFidelidade.findByPk(id,{
-                attributes: ['id', 'nome', 'descricao','quantidadeMarcacao', 'premio','ativo', 'dataExpiracao'],            
+                attributes: ['id', 'nome', 'descricao','quantidadeMarcacao', 'premio','ativo', 'dataExpiracao','estabelecimentoId'],            
                 include: [ { model: model.CampoRegistroCartaoFidelidade, attributes: ['id', 'marcado','data'], required: true}],
                 order: [                
                     [{ model: model.CampoRegistroCartaoFidelidade}, 'data',  'ASC']
