@@ -23,8 +23,13 @@ const models = [
     '../db/models/cartaofidelidade',
     '../db/models/camporegistrocartaofidelidade',
     '../db/models/programafidelidade',
-    '../db/models/campoitemprogramafidelidade'
+    '../db/models/campoitemprogramafidelidade',
+    '../db/models/clienteestabelecimento'    
 ]
+
+
+
+
 
 let l = models.length
 
