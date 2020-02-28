@@ -46,6 +46,15 @@ estabelecimentoControle.prototype.buscarPorUsuario = async (req, res) =>{
   } catch (error) {      
     res.status(500).send({ message: 'Erro no processamento', error: err });
   }    
+}; 
+
+estabelecimentoControle.prototype.buscarComProgramaFidelidadeOuCartaoFidelidade = async (req, res) =>{     
+  try {           
+    let data = await _repo.buscarComProgramaFidelidadeOuCartaoFidelidade();
+    res.status(200).send(data);
+  } catch (error) {      
+    res.status(500).send({ message: 'Erro no processamento', error: err });
+  }    
 };  
 
 module.exports = estabelecimentoControle;

@@ -16,13 +16,54 @@ class estabelecimentoRepositorio{
                         model.Telefone, model.MidiaSocial]});
     }
 
-    async getAll() {
+     async getAll() {
         return await model.
             Estabelecimento.findAll({attributes: ['id', 'nome', 'ativo', 'cnpj', 'email'],               
                 order: [                
                     ['nome', 'ASC']
                 ]
             });
+    } 
+
+    async buscarComProgramaFidelidadeOuCartaoFidelidade() {
+        return await model.
+            Estabelecimento.findAll({attributes: ['id', 'nome', 'ativo', 'cnpj', 'email'],               
+            include: [
+                {   model: model.ProgramaFidelidade, 
+                    as : 'programaFidelidadeAlias',
+                    attributes: ['id'], 
+                    required: false                  
+                },   
+                { model: model.CartaoFidelidade,
+                  as : 'cartaoFidelidadeAlias',
+                  attributes: ['id'],
+                  required: false                                 
+                },
+            ], 
+            where : {
+                ativo: true,
+                [Op.or]:
+                [
+                    {
+                        [Op.and]:
+                        [
+                            {'$programaFidelidadeAlias.estabelecimentoId$' : {[Op.not]: null }},
+                            {'$programaFidelidadeAlias.ativo$' : true}
+                        ]
+                    },
+                    {
+                        [Op.and]:
+                        [
+                            {'$cartaoFidelidadeAlias.estabelecimentoId$' : {[Op.not]: null }},
+                            {'$cartaoFidelidadeAlias.ativo$' : true}
+                        ]
+                    }
+                ]   
+                },  
+            group: ['Estabelecimento.id', 'Estabelecimento.nome', 'Estabelecimento.ativo', 
+                    'Estabelecimento.cnpj', 'Estabelecimento.email']
+            }
+        );
     }
 
     async getById(id) {

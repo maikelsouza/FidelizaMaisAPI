@@ -30,8 +30,8 @@ module.exports = (sequelize, DataTypes) => {
    Estabelecimento.belongsTo(models.Usuario, {foreignkey : 'estabelecimentoId'});
    Estabelecimento.belongsTo(models.ClienteEstabelecimento, {foreignkey : 'estabelecimentoId'});
    Estabelecimento.EnderecoEstabelecimento = Estabelecimento.hasOne(models.EnderecoEstabelecimento, { foreignkey : 'estabelecimentoId'});                                        
-   Estabelecimento.CartaoFidelidade =  Estabelecimento.hasMany(models.CartaoFidelidade, { foreignkey : 'estabelecimentoId'});
-   Estabelecimento.ProgramaFidelidade =  Estabelecimento.hasMany(models.ProgramaFidelidade, { foreignkey : 'estabelecimentoId'});
+   Estabelecimento.CartaoFidelidade =  Estabelecimento.hasMany(models.CartaoFidelidade, { foreignkey : 'estabelecimentoId', as: 'cartaoFidelidadeAlias'});
+   Estabelecimento.ProgramaFidelidade =  Estabelecimento.hasMany(models.ProgramaFidelidade, { foreignkey : 'estabelecimentoId', as: 'programaFidelidadeAlias'});
    Estabelecimento.Telefone =  Estabelecimento.hasMany(models.Telefone, { foreignkey : 'estabelecimentoId'});
    Estabelecimento.hasMany(models.MidiaSocial, {foreignkey : 'estabelecimentoId'});
   };
