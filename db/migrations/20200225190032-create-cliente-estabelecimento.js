@@ -18,8 +18,9 @@ module.exports = {
         allowNull: false
       },
       estabelecimentoId: {
-        type: Sequelize.INTEGER,            
-        allowNull: false,
+        type: Sequelize.INTEGER,     
+        unique: 'usuarioId_estabelecimentoId_unique',       
+        allowNull: false,        
         references: {
           model: "Estabelecimentos",
           key: "id",
@@ -28,7 +29,8 @@ module.exports = {
       },
       usuarioId: {
         type: Sequelize.INTEGER,            
-        allowNull: false,
+        allowNull: false,        
+        unique: 'usuarioId_estabelecimentoId_unique',
         references: {
           model: "Usuarios",
           key: "id",
@@ -43,8 +45,16 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       }      
-    });
+    },
+    {
+      uniqueKeys: {
+        usuarioId_estabelecimentoId_unique: {
+            fields: ['usuarioId', 'estabelecimentoId']
+        }
+    }}
+    );
   },
+  
   down: (queryInterface, Sequelize) => {
     return queryInterface.dropTable('ClienteEstabelecimentos');
   }
