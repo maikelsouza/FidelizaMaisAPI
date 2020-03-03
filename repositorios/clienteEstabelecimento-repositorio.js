@@ -15,10 +15,24 @@ class clienteEstabelecimentoRepositorio{
             {attributes: ['id', 'estabelecimentoId'],                                 
                  where: {  
                     [Op.and]: 
-                    [{estabelecimentoId: id}, {ativo: true}]
+                    [{usuarioId: id}, {ativo: true}]
                 },                   
-            });          
-        }
+            }
+        );          
     }
+
+    async deletePorUsuarioEEstabelecimento(usuarioId, estabelecimentoId) {             
+        model.ClienteEstabelecimento.destroy({
+                where: { 
+                    [Op.and]: 
+                    [{usuarioId: usuarioId}, {estabelecimentoId: estabelecimentoId}]
+                }   
+            });        
+        }
+    }   
+      
+    
+
+   
 
 module.exports = clienteEstabelecimentoRepositorio;
