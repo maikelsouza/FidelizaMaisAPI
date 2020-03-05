@@ -13,8 +13,7 @@ tipoEstabelecimentoControle.prototype.buscarTodosAtivos = async (req, res) =>{
     try {      
         let data = await _repo.buscarTodosAtivos();
         res.status(200).send(data);
-    } catch (error) {
-        console.log('tipoEstabelecimentoControle.bustarTodosAtivos: ', error);
+    } catch (error) {        
         res.status(500).send({ message: 'Erro no processamento', error: err });
     }   
 };   
