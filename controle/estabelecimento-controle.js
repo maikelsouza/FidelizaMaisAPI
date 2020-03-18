@@ -57,4 +57,14 @@ estabelecimentoControle.prototype.buscarComProgramaFidelidadeOuCartaoFidelidade 
   }    
 };  
 
+estabelecimentoControle.prototype.getByEstabelecimentoEEmailCliente = async (req, res) =>{ 
+  try {      
+    let data = await _repo.getByEstabelecimentoEEmailCliente(req.params.id,req.params.email);    
+    res.status(200).send(data);
+    } catch (error) {       
+        res.status(500).send({ message: 'Erro no processamento', error: err });
+    }
+};
+
+
 module.exports = estabelecimentoControle;

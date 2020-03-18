@@ -205,6 +205,24 @@ class estabelecimentoRepositorio{
                 }
             }
      }
+     
+     async getByEstabelecimentoEEmailCliente(estabelecimentoId, email) {
+        return await  model.Estabelecimento.findByPk(estabelecimentoId,{
+            attributes: [],
+            include : {
+                association : 'usuarios',
+                attributes: ['nome'],
+                 where: { 
+                    email: {
+                        [Op.like]: email+'%'
+                    }            
+                },                  
+                through: { 
+                    attributes: ['ativo']
+                  } 
+            }
+        })
+    }    
 
     }
 

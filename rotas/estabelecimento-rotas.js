@@ -9,6 +9,7 @@ let _ctrl = new controle();
 
 rota.get("/", autenticador,_ctrl.get);
 rota.get("/buscarComProgramaFidelidadeOuCartaoFidelidade",autenticador,_ctrl.buscarComProgramaFidelidadeOuCartaoFidelidade);
+rota.get('/buscarPorEstabelecimentoEEmailCliente/:id/:email',autenticador,_ctrl.getByEstabelecimentoEEmailCliente);
 rota.get('/:id',autenticador,_ctrl.getById);
 rota.get('/buscarPorUsuario/:id',autenticador,_ctrl.buscarPorUsuario);
 rota.post('/', autenticador,_ctrl.post);
