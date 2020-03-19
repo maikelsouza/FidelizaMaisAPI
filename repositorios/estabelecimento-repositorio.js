@@ -211,7 +211,7 @@ class estabelecimentoRepositorio{
             attributes: [],
             include : {
                 association : 'usuarios',
-                attributes: ['nome'],
+                attributes: ['id','nome'],
                  where: { 
                     email: {
                         [Op.like]: email+'%'
