@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
   Estabelecimento.associate = function(models) {  
    Estabelecimento.belongsTo(models.TipoEstabelecimento, {foreignkey : 'estabelecimentoId'});
    Estabelecimento.belongsTo(models.Usuario, {foreignkey : 'estabelecimentoId'});   
-   this.belongsToMany(models.Usuario, { foreignKey: 'usuarioId', through: 'ClienteEstabelecimentos', as: 'usuarios' });
+   this.belongsToMany(models.Usuario, { foreignKey: 'estabelecimentoId', through: 'ClienteEstabelecimentos', as: 'usuarios' });
    Estabelecimento.EnderecoEstabelecimento = Estabelecimento.hasOne(models.EnderecoEstabelecimento, { foreignkey : 'estabelecimentoId'});                                        
    Estabelecimento.CartaoFidelidade =  Estabelecimento.hasMany(models.CartaoFidelidade, { foreignkey : 'estabelecimentoId', as: 'cartaoFidelidadeAlias'});
    Estabelecimento.ProgramaFidelidade =  Estabelecimento.hasMany(models.ProgramaFidelidade, { foreignkey : 'estabelecimentoId', as: 'programaFidelidadeAlias'});
