@@ -46,7 +46,7 @@ class cartaoFidelidadeRepositorio{
 
       async buscarPorEstabelecimento(id) {
         return await model.CartaoFidelidade.findAll(
-            {attributes: ['id', 'nome', 'dataExpiracao', 'ativo'],
+            {attributes: ['id', 'nome', 'dataExpiracao'],
                 where: {  
                     [Op.and]: 
                     [{estabelecimentoId: id}, {ativo: true}]
