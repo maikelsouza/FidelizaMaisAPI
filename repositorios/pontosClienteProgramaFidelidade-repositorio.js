@@ -7,7 +7,7 @@ class pontosClienteProgramaFidelidadeRepositorio{
 
 
     async create(data){  
-        model.pontosClienteProgramaFidelidadeRepositorio.create(data);
+        model.PontosClienteProgramaFidelidade.create(data);
      }
 }
 
