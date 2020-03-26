@@ -25,15 +25,25 @@ class usuarioRepositorio{
             });
     }
 
-     async getByEmaileSenha(email,senha) {
+
+    async getByEmaileSenha(email,senha) {
         return await model.
                 Usuario.findAll({attributes: ['id', 'nome', 'ativo','email'],    
-                    include: [ { model: model.GrupoUsuario, attributes: ['nome'],required: true},
-                    {association: model.GrupoUsuario.Permissoes, attributes: ['nome'], required: true}],
                 where: {  
                     [Op.and]: 
                     [{email: email}, {senha: senha}]
-                 }         
+                 },         
+                include: [ 
+                    { model: model.GrupoUsuario, 
+                        required: true,                
+                        attributes: ['nome'],
+                        include: [ 
+                            { model: model.Permissoes, 
+                                attributes: ['nome'],
+                                required: true                
+                            }],
+                    }
+                ]
             });
     } 
 
