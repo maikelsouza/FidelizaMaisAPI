@@ -16,6 +16,7 @@ const cartaoFidelidadeRota = require('../rotas/cartaoFidelidade-rotas');
 const programaFidelidadeRota = require('../rotas/programaFidelidade-rotas');
 const clienteEstabelecimentoRota = require('../rotas/clienteEstabelecimento-rotas');
 const pontosClienteProgramaFidelidadeRota = require('../rotas/pontosClienteProgramaFidelidade-rotas');
+const totalPontosClienteProgramaFidelidadeRota = require('../rotas/totalPontosClienteProgramaFidelidade-rotas');
 
 //const usuarioRouter = require('../routes/usuario-router');
 
@@ -46,6 +47,8 @@ app.use('/api/cartaoFidelidade', cartaoFidelidadeRota);
 app.use('/api/programaFidelidade', programaFidelidadeRota);
 app.use('/api/clienteEstabelecimento', clienteEstabelecimentoRota);
 app.use('/api/pontosClienteProgramaFidelidade', pontosClienteProgramaFidelidadeRota);
+app.use('/api/totalPontosClienteProgramaFidelidade', totalPontosClienteProgramaFidelidadeRota);
+
 
 
 

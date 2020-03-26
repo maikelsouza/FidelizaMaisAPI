@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
     Usuario.CartaoFidelidade =  Usuario.hasMany(models.CartaoFidelidade, { foreignkey : 'usuarioId'});
     Usuario.ProgramaFidelidade =  Usuario.hasMany(models.ProgramaFidelidade, { foreignkey : 'usuarioId'});
     Usuario.Estabelecimento = Usuario.hasMany(models.Estabelecimento, {foreignkey : 'usuarioId'});    
-    this.hasMany(models.PontosClienteProgramaFidelidade, { foreignkey : 'usuarioId'});
+    this.hasMany(models.TotalPontosClienteProgramaFidelidade, { foreignkey : 'usuarioId'});
   };
   return Usuario;
 };

@@ -25,6 +25,7 @@ const models = [
     '../db/models/programafidelidade',
     '../db/models/campoitemprogramafidelidade',
     '../db/models/clienteestabelecimento',
+    '../db/models/totalPontosClienteProgramaFidelidade',
     '../db/models/pontosclienteprogramafidelidade'
         
 ]
