@@ -1,7 +1,5 @@
 const model = require('../config/modelLoader');
 const Op = model.Sequelize.Op
-const Fn = model.Sequelize.fn
-const Col = model.Sequelize.col
 
 class TotalPontosClienteProgramaFidelidadeRepositorio{
 
@@ -16,16 +14,11 @@ class TotalPontosClienteProgramaFidelidadeRepositorio{
          );
      }    
 
-     async getCountUsuarioIdAtivo(usuarioId) {
-      return await model.
-         TotalPontosClienteProgramaFidelidade.findOne({
-                  attributes: [[Fn('count', Col('usuarioId') ), 'usuarioId',]],
-                  where: {  
-                     [Op.and]: 
-                     [{usuarioId : usuarioId}, {ativo: true}]
-               },    
-            });
-    }    
+     async update(id, data) {
+      model.TotalPontosClienteProgramaFidelidade.update(data,{
+          where: {id}   
+      });
+  }
 
     async getUsuarioIdAtivo(usuarioId) {
       return await model.

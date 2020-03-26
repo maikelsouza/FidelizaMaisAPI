@@ -17,8 +17,9 @@ totalPontosClienteProgramaFidelidadeControle.prototype.post = async (req, res) =
   controleBase.post(_repo, contratoValidacao, req, res);     
 };
 
-totalPontosClienteProgramaFidelidadeControle.prototype.put = async (req, res) =>{ 
-    
+totalPontosClienteProgramaFidelidadeControle.prototype.update = async (req, res) =>{   
+  let contratoValidacao = new validacao();
+  controleBase.put(_repo, contratoValidacao, req, res);    
 };
 
 totalPontosClienteProgramaFidelidadeControle.prototype.get = async (req, res) =>{    
