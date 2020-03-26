@@ -9,11 +9,9 @@ let _ctrl = new controle();
 
 
 
-rota.get('/countUsuarioIdAtivo/:usuarioId',autenticador,_ctrl.countUsuarioIdAtivo);
 rota.get('/getUsuarioIdAtivo/:usuarioId',autenticador,_ctrl.getUsuarioIdAtivo);
 rota.post('/', autenticador,_ctrl.post);
-
-           
+rota.put('/:id',autenticador, _ctrl.update);          
 
 
 module.exports = rota;
