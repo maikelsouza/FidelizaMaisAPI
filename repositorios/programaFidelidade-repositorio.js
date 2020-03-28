@@ -60,7 +60,7 @@ class programaFidelidadeRepositorio{
 
       async buscarPorEstabelecimento(id) {
         return await model.ProgramaFidelidade.findAll(
-            {attributes: ['id', 'nome', 'dataExpiracao', 'ativo'],
+            {attributes: ['id', 'nome', 'dataExpiracao', 'ativo', 'regra'],
                 where: {  
                     [Op.and]: 
                     [{estabelecimentoId: id}, {ativo: true}]
