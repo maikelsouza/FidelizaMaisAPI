@@ -9,7 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       pontos: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.DOUBLE,
         allowNull: false
       },
       dataPontuacao: {
