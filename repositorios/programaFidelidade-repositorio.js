@@ -39,7 +39,7 @@ class programaFidelidadeRepositorio{
                 include: { association: 'CampoItemProgramaFidelidades',
                            attributes: ['id', 'nome','descricao','dataExpiracao','quantidadePontos'], required: true
                         },
-                       // order: [[model.CampoItemProgramaFidelidade, 'createdAt', 'DESC']]
+                   //     order: [[model.CampoItemProgramaFidelidade, 'quantidadePontos', 'DESC']]
                         
                     },
             );
@@ -61,12 +61,17 @@ class programaFidelidadeRepositorio{
       async buscarPorEstabelecimento(id) {
         return await model.ProgramaFidelidade.findAll(
             {attributes: ['id', 'nome', 'dataExpiracao', 'ativo', 'regra'],
+                include: { association: 'CampoItemProgramaFidelidades',
+                           attributes: ['id', 'nome','descricao','dataExpiracao','quantidadePontos'], 
+                           required: true
+                         },                            
                 where: {  
                     [Op.and]: 
                     [{estabelecimentoId: id}, {ativo: true}]
                 },
-                order: [                
-                    ['nome', 'ASC']
+                order: [
+                    ['nome','ASC'],
+                    ['CampoItemProgramaFidelidades', 'quantidadePontos', 'ASC']
                 ]
             });          
       }
