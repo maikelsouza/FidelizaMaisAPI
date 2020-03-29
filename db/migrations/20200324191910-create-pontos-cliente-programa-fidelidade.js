@@ -11,12 +11,8 @@ module.exports = {
       pontos: {
         type: Sequelize.DOUBLE,
         allowNull: false
-      },
-      dataPontuacao: {
-        type: Sequelize.DATE,        
-        allowNull: false
-      },
-       ativo: {
+      },    
+      ativo: {
         type: Sequelize.BOOLEAN,
         allowNull: false,
         defaultValue: true
