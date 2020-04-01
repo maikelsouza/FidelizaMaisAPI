@@ -31,6 +31,15 @@ usuarioControle.prototype.getById = async (req, res) =>{
     controleBase.getById(_repo, req, res);
 };
 
+usuarioControle.prototype.getUsuariosSemEstabelecimentosAssociados = async (req, res) =>{ 
+  try {              
+    const data = await _repo.getUsuariosSemEstabelecimentosAssociados();
+    res.status(200).send(data);
+  } catch (error) {        
+      res.status(500).send({ message: 'Erro no processamento', error: err });
+  }   
+};
+
 usuarioControle.prototype.update = async (req, res) =>{   
   let contratoValidacao = new validacao();
   controleBase.put(_repo, contratoValidacao, req, res);    

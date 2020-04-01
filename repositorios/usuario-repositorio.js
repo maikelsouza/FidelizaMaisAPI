@@ -35,10 +35,12 @@ class usuarioRepositorio{
                  },         
                 include: [ 
                     { model: model.GrupoUsuario, 
+                      //  as: 'grupoUsuario',
                         required: true,                
                         attributes: ['nome'],
                         include: [ 
                             { model: model.Permissoes, 
+                           //     as: 'grupoUsuario',
                                 attributes: ['nome'],
                                 required: true                
                             }],
@@ -52,8 +54,30 @@ class usuarioRepositorio{
         Usuario.findByPk(id,{
                 attributes: ['id', 'nome', 'ativo', 'email', 'cpf', 'dataNascimento', 'sexo']
             })
-        }
+    }
 
+    async getUsuariosSemEstabelecimentosAssociados() {
+        return await model.
+            Usuario.findAll({attributes: ['id', 'nome'],    
+                include: { 
+                model: model.GrupoUsuario, 
+              //  as: 'grupoUsuario',                
+                attributes: [], 
+                required: true,
+                where: {
+                    nome: 'ESTABELECIMENTOS'
+                 }                   
+                },    
+                where: {
+                    [Op.and]: 
+                        [model.Sequelize.literal(" not exists (SELECT 1 from estabelecimentos e where e.usuarioId = Usuario.id ) "),
+                        {ativo: true}//,
+                      //  {'$grupoUsuario.nome$' : 'ESTABELECIMENTOS'}
+                    ]
+                }                   
+            }
+        );
+    }
 }
 
 module.exports = usuarioRepositorio;

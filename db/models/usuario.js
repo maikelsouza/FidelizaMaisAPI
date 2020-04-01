@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
 },  
   {});
   Usuario.associate = function(models) {
-    Usuario.belongsTo(models.GrupoUsuario, {foreignkey : 'grupoUsuarioId'});    
+    Usuario.belongsTo(models.GrupoUsuario, {foreignkey : 'grupoUsuarioId' });    
     this.belongsToMany(models.Estabelecimento, { foreignKey: 'usuarioId', through: 'ClienteEstabelecimentos', as: 'estabelecimentos' });
     Usuario.CartaoFidelidade =  Usuario.hasMany(models.CartaoFidelidade, { foreignkey : 'usuarioId'});
     Usuario.ProgramaFidelidade =  Usuario.hasMany(models.ProgramaFidelidade, { foreignkey : 'usuarioId'});

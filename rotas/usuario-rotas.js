@@ -13,6 +13,7 @@ rota.post('/autenticar', _ctrl.autenticar);
 
 
 rota.get("/",autenticador,_ctrl.get);
+rota.get('/buscarSemEstabelecimentosAssociados',autenticador, _ctrl.getUsuariosSemEstabelecimentosAssociados);
 rota.get('/:id',autenticador, _ctrl.getById);
 rota.post('/',  autenticador,_ctrl.post);
 rota.put('/:id',autenticador, _ctrl.update);
