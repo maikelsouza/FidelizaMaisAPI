@@ -31,6 +31,15 @@ usuarioControle.prototype.getById = async (req, res) =>{
     controleBase.getById(_repo, req, res);
 };
 
+usuarioControle.prototype.getByEmail = async (req, res) =>{ 
+  try {              
+    const data = await _repo.getByEmail(req.params.email)
+    res.status(200).send(data);
+  } catch (error) {        
+      res.status(500).send({ message: 'Erro no processamento', error: err });
+  }   
+};
+
 usuarioControle.prototype.getUsuariosSemEstabelecimentosAssociados = async (req, res) =>{ 
   try {              
     const data = await _repo.getUsuariosSemEstabelecimentosAssociados();
@@ -42,6 +51,9 @@ usuarioControle.prototype.getUsuariosSemEstabelecimentosAssociados = async (req,
 
 usuarioControle.prototype.update = async (req, res) =>{   
   let contratoValidacao = new validacao();
+  if (req.body.senha != null){
+    req.body.senha = md5(req.body.senha);
+  }
   controleBase.put(_repo, contratoValidacao, req, res);    
 };
 
