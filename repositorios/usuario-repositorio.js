@@ -34,19 +34,25 @@ class usuarioRepositorio{
                     [{email: email}, {senha: senha}]
                  },         
                 include: [ 
-                    { model: model.GrupoUsuario, 
-                      //  as: 'grupoUsuario',
+                    { model: model.GrupoUsuario,                       
                         required: true,                
                         attributes: ['nome'],
                         include: [ 
-                            { model: model.Permissoes, 
-                           //     as: 'grupoUsuario',
+                            { model: model.Permissoes,                            
                                 attributes: ['nome'],
                                 required: true                
                             }],
                     }
                 ]
             });
+    } 
+
+    async getByEmail(email) {
+        return await model.
+                Usuario.findOne(
+                    {attributes: { exclude: ['senha']}, 
+                    where:{email} },
+                 );
     } 
 
     async getById(id) {
@@ -60,8 +66,7 @@ class usuarioRepositorio{
         return await model.
             Usuario.findAll({attributes: ['id', 'nome'],    
                 include: { 
-                model: model.GrupoUsuario, 
-              //  as: 'grupoUsuario',                
+                model: model.GrupoUsuario,               
                 attributes: [], 
                 required: true,
                 where: {
@@ -71,8 +76,7 @@ class usuarioRepositorio{
                 where: {
                     [Op.and]: 
                         [model.Sequelize.literal(" not exists (SELECT 1 from estabelecimentos e where e.usuarioId = Usuario.id ) "),
-                        {ativo: true}//,
-                      //  {'$grupoUsuario.nome$' : 'ESTABELECIMENTOS'}
+                        {ativo: true}                   
                     ]
                 }                   
             }
