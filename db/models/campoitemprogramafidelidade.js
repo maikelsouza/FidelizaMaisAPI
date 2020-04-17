@@ -15,11 +15,8 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       defaultValue: true
     }, 
-    dataExpiracao: DataTypes.DATE,
-    programaFidelidadeId: {
-      type: DataTypes.INTEGER, 
-      allowNull: false
-  }   
+    dataExpiracao: DataTypes.DATE
+    
   
     
   }, {});
