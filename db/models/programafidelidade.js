@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   ProgramaFidelidade.associate = function(models) {
     ProgramaFidelidade.Estabelecimento = ProgramaFidelidade.belongsTo(models.Estabelecimento, {foreignkey : 'estabelecimentoId'});
     ProgramaFidelidade.Usuario = ProgramaFidelidade.belongsTo(models.Usuario, {foreignkey : 'usuarioId'});
-    this.hasMany(models.CampoItemProgramaFidelidade, { foreignkey : 'programaFidelidadeId', as: "CampoItemProgramaFidelidades" });                              
+    this.hasMany(models.CampoItemProgramaFidelidade, { foreignkey : 'programaFidelidadeId', as: 'CampoItemProgramaFidelidades' });                              
   };
   return ProgramaFidelidade;
 };
