@@ -15,6 +15,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       unique: true
     },
+    site: {
+      type: DataTypes.STRING,
+      unique: true
+    },
     tipoEstabelecimentoId: {
       type: DataTypes.STRING, 
       allowNull: false
