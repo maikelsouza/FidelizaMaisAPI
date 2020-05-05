@@ -6,7 +6,7 @@ module.exports = {
         nome: 'Maikel Joel de Souza',
         sexo: 'Masculino',
         email: 'maikel.souza@gmail.com',
-        dataNascimento: '1979-02-09 00:00:00',
+        dataNascimento: '1979-02-08',
         senha: '26ebbd10de57c7c78d70169dfb3bd69e',
         cpf: '00342683918',
         grupoUsuarioId: 1,

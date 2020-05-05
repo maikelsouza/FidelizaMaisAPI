@@ -23,7 +23,7 @@ module.exports = {
         unique: true
       },
       dataNascimento: {
-        type: Sequelize.DATE
+        type: Sequelize.DATEONLY
       },
       senha: {
         type: Sequelize.STRING,
