@@ -26,6 +26,9 @@ module.exports = {
         updatedAt: new Date()},
         {nome: 'Salão Beleza',
         createdAt: new Date(),
+        updatedAt: new Date()}, 
+        {nome: 'Loja Produtos Naturais',
+        createdAt: new Date(),
         updatedAt: new Date()                
       }], {});
     
