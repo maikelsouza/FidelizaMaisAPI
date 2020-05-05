@@ -37,9 +37,8 @@ class programaFidelidadeRepositorio{
         ProgramaFidelidade.findByPk(id ,{
                 attributes: ['id', 'nome', 'descricao','dataExpiracao', 'ativo', 'regra','estabelecimentoId'],
                 include: { association: 'CampoItemProgramaFidelidades',
-                           attributes: ['id', 'nome','descricao','dataExpiracao','quantidadePontos'], required: true
-                        },
-                   //     order: [[model.CampoItemProgramaFidelidade, 'quantidadePontos', 'DESC']]
+                           attributes: ['id', 'nome','descricao','dataExpiracao','ativo', 'quantidadePontos'], required: true
+                        },                   
                         
                     },
             );
