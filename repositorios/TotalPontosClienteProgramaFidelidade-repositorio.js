@@ -20,13 +20,14 @@ class TotalPontosClienteProgramaFidelidadeRepositorio{
       });
   }
 
-    async getUsuarioIdAtivo(usuarioId) {
+    async getUsuarioIdProgramaFidelidadeIdAtivo(usuarioId, programaFidelidadeId) {
       return await model.
          TotalPontosClienteProgramaFidelidade.findOne({
                   attributes: ['id', 'totalPontos'],
                   where: {  
                      [Op.and]: 
-                     [{usuarioId : usuarioId}, {ativo: true}]
+                     [{usuarioId}, {ativo: true}, {programaFidelidadeId}
+                    ]
                },    
             });
     }    

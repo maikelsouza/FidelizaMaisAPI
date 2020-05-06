@@ -9,7 +9,7 @@ let _ctrl = new controle();
 
 
 
-rota.get('/getUsuarioIdAtivo/:usuarioId',autenticador,_ctrl.getUsuarioIdAtivo);
+rota.get('/getUsuarioIdProgramaFidelidadeIdAtivo/:usuarioId/:programaFidelidadeId',autenticador,_ctrl.getUsuarioIdProgramaFidelidadeIdAtivo);
 rota.post('/', autenticador,_ctrl.post);
 rota.put('/:id',autenticador, _ctrl.update);          
 

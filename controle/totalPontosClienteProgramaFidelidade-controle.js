@@ -35,9 +35,9 @@ totalPontosClienteProgramaFidelidadeControle.prototype.countUsuarioIdAtivo = asy
   }   
 };
 
-totalPontosClienteProgramaFidelidadeControle.prototype.getUsuarioIdAtivo = async (req, res) =>{      
+totalPontosClienteProgramaFidelidadeControle.prototype.getUsuarioIdProgramaFidelidadeIdAtivo = async (req, res) =>{      
   try {          
-    let data = await _repo.getUsuarioIdAtivo(req.params.usuarioId);
+    let data = await _repo.getUsuarioIdProgramaFidelidadeIdAtivo(req.params.usuarioId,req.params.programaFidelidadeId);
     res.status(200).send(data);
   } catch (error) {        
       res.status(500).send({ message: 'Erro no processamento', error: err });
