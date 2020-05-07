@@ -16,6 +16,13 @@ class usuarioRepositorio{
         });
     }
 
+    async updateSenha(id, senha) {
+        model.Usuario.update(
+            {senha},
+            {where: {id}}   
+        );
+    }
+
     async getAll() {
         return await model.
                 Usuario.findAll({attributes: ['id', 'nome', 'ativo', 'cpf', 'email'],               

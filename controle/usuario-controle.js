@@ -57,6 +57,20 @@ usuarioControle.prototype.update = async (req, res) =>{
   controleBase.put(_repo, contratoValidacao, req, res);    
 };
 
+
+usuarioControle.prototype.updateSenha = async (req, res) =>{   
+  let contratoValidacao = new validacao();
+  try {              
+    if (req.body.senha != null){
+      req.body.senha = md5(req.body.senha);
+    }
+    const data = await _repo.updateSenha(req.params.id,req.body.senha);  
+    res.status(200).send(data);
+  } catch (error) {        
+    res.status(500).send({ message: 'Erro no processamento', error: err });
+  }   
+};
+
 usuarioControle.prototype.autenticar = async (req, res) => {
 
   let _validationContract = new validacao();
