@@ -25,7 +25,7 @@ module.exports = {
         defaultValue: true
       },
       dataExpiracao: {
-        type: Sequelize.DATE
+        type: Sequelize.DATEONLY
       },        
       createdAt: {
         allowNull: false,

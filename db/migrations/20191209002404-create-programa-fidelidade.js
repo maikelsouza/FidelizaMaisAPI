@@ -16,7 +16,7 @@ module.exports = {
         type: Sequelize.STRING(500)
       },
       dataExpiracao: {
-        type: Sequelize.DATE
+        type: Sequelize.DATEONLY
       },
       ativo: {
         type: Sequelize.BOOLEAN,
