@@ -39,6 +39,14 @@ class estabelecimentoRepositorio{
                   attributes: ['id'],
                   required: false                                 
                 },
+                { model: model.Telefone,                    
+                    attributes: ['id', 'numero', 'tipo', 'ativo'],
+                    required: false                                 
+                },
+                { model: model.MidiaSocial,                    
+                    attributes: ['id', 'url', 'ativo', 'nome'],
+                    required: false                                 
+                },
             ], 
             where : {
                 ativo: true,
