@@ -27,7 +27,7 @@ class estabelecimentoRepositorio{
 
     async buscarComProgramaFidelidadeOuCartaoFidelidade() {
         return await model.
-            Estabelecimento.findAll({attributes: ['id', 'nome', 'ativo', 'cnpj', 'email'],               
+            Estabelecimento.findAll({attributes: ['id', 'nome', 'ativo', 'cnpj', 'email', 'site'],               
             include: [
                 {   model: model.ProgramaFidelidade, 
                     as : 'programaFidelidadeAlias',
@@ -47,6 +47,10 @@ class estabelecimentoRepositorio{
                     attributes: ['id', 'url', 'ativo', 'nome'],
                     required: false                                 
                 },
+                { model: model.EnderecoEstabelecimento,                                 
+                    attributes: ['id','rua','numero','bairro','cidade','uf'],                  
+                    required: true
+                },       
             ], 
             where : {
                 ativo: true,
