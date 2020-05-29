@@ -3,7 +3,7 @@ module.exports = {
     "development": {
       "username": "root",
       "password": "AQKpza87141",
-      "database": "cartaoFidelidade",
+      "database": "fidelizamais",
       "host": "127.0.0.1",
       "dialect": "mysql"      
     },
