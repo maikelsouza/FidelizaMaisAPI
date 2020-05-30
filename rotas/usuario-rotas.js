@@ -8,8 +8,6 @@ let _ctrl = new controle();
 
 //Public access
 rota.post('/autenticar', _ctrl.autenticar);
-//rota.post("/register", _ctrl.post);
-
 
 
 rota.get("/",autenticador,_ctrl.get);
