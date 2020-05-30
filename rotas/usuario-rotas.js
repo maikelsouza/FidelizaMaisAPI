@@ -17,6 +17,6 @@ rota.get('/:id',autenticador, _ctrl.getById);
 rota.post('/',  autenticador,_ctrl.post);
 rota.put('/:id',autenticador, _ctrl.update);
 rota.put('/atualizarSenha/:id',autenticador, _ctrl.updateSenha);
-//rota.delete('/:id', _ctrl.delete);
+
 
 module.exports = rota;
