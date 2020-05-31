@@ -8,7 +8,6 @@ const autenticador = require('../middlewares/autenticador');
 let _ctrl = new controle();
 
 
-
 rota.get('/getUsuarioIdProgramaFidelidadeIdAtivo/:usuarioId/:programaFidelidadeId',autenticador,_ctrl.getUsuarioIdProgramaFidelidadeIdAtivo);
 rota.post('/', autenticador,_ctrl.post);
 rota.put('/:id',autenticador, _ctrl.update);          
