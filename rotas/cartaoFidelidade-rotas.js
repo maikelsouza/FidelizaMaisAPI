@@ -15,5 +15,4 @@ rota.post('/', autenticador,_ctrl.post);
 rota.put('/:id',autenticador,_ctrl.update);
 
 
-
 module.exports = rota;
