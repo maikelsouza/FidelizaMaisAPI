@@ -33,7 +33,6 @@ const models = [
 
 
 
-
 let l = models.length
 
 //Irá importar os modelos para o sequelize
