@@ -18,5 +18,4 @@ tipoEstabelecimentoControle.prototype.buscarTodosAtivos = async (req, res) =>{
     }   
 };   
 
-
 module.exports = tipoEstabelecimentoControle;
