@@ -90,5 +90,4 @@ usuarioControle.prototype.autenticar = async (req, res) => {
   }
 }
 
-
 module.exports = usuarioControle;
