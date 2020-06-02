@@ -30,7 +30,6 @@ pontosClienteProgramaFidelidadeControle.prototype.buscarSomatorioPontosProgramaF
   }   
 };
 
-
 pontosClienteProgramaFidelidadeControle.prototype.get = async (req, res) =>{    
   controleBase.get(_repo, req, res);
 };
