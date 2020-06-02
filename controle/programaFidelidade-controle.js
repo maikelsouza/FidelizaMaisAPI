@@ -56,7 +56,6 @@ programaFidelidadeControle.prototype.buscarPorUsuario = async (req, res) =>{
         res.status(500).send({ message: 'Erro no processamento', error: err });
       }
   }; 
-   
-  
+     
 
 module.exports = programaFidelidadeControle;
