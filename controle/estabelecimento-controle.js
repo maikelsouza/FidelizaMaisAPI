@@ -66,5 +66,4 @@ estabelecimentoControle.prototype.getByEstabelecimentoEEmailCliente = async (req
     }
 };
 
-
 module.exports = estabelecimentoControle;
