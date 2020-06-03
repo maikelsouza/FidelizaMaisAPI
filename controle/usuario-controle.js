@@ -89,5 +89,4 @@ usuarioControle.prototype.autenticar = async (req, res) => {
       res.status(404).send({ message: 'Usuário e senha informado são inválido!' });
   }
 }
-
 module.exports = usuarioControle;
