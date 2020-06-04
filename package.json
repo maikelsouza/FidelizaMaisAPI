@@ -2,8 +2,9 @@
   "name": "fidelizamais.api",
   "version": "1.0.0",
   "description": "Api feita em nodeJs para a utilização do aplicativo Fideliza Mais",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Maikel Joel de Souza",

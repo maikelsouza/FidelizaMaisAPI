@@ -24,8 +24,8 @@ const models = [
     '../db/models/camporegistrocartaofidelidade',
     '../db/models/programafidelidade',
     '../db/models/campoitemprogramafidelidade',
+    '../db/models/totalpontosclienteprogramafidelidade',                  
     '../db/models/clienteestabelecimento',
-    '../db/models/totalPontosClienteProgramaFidelidade',
     '../db/models/pontosclienteprogramafidelidade'
         
 ]
