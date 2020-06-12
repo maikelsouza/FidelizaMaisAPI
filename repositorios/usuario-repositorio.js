@@ -82,7 +82,7 @@ class usuarioRepositorio{
                 },    
                 where: {
                     [Op.and]: 
-                        [model.Sequelize.literal(" not exists (SELECT 1 from estabelecimentos e where e.usuarioId = Usuario.id ) "),
+                        [model.Sequelize.literal(" not exists (SELECT 1 from Estabelecimentos e where e.usuarioId = Usuario.id ) "),
                         {ativo: true}                   
                     ]
                 }                   
