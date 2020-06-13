@@ -7,7 +7,7 @@ const dataBases = require('../bin/configuracoes/variaveis');
 
 const db = {};
 
-const dataBase = dataBases.DatabaseDesenvolvimento
+//const dataBase = dataBases.DatabaseDesenvolvimento
 //routers
 const estabelecimentoRota = require('../rotas/estabelecimento-rotas');
 const tipoEstabelecimentoRota = require('../rotas/tipoEstabelecimento-rotas');
