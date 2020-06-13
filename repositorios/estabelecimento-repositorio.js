@@ -81,7 +81,7 @@ class estabelecimentoRepositorio{
     async getById(id) {
             return await model.
                 Estabelecimento.findByPk(id,{
-                    attributes: ['id', 'nome', 'ativo', 'email', 'cnpj', 'tipoEstabelecimentoId'],                                            
+                    attributes: ['id', 'nome', 'ativo', 'email', 'cnpj', 'site','tipoEstabelecimentoId'],                                            
                      include: [
                         { model: model.EnderecoEstabelecimento,                                 
                           attributes: ['id','rua','numero','cep','complemento','bairro','cidade','uf','pais'], 
