@@ -2,6 +2,7 @@
 
 const repositorio = require('../repositorios/usuario-repositorio');
 const controleBase = require('../bin/base/controle-base');
+const emailControle = require('./email-controle');
 const validacao = require('../bin/helpers/validacao');
 const variaveis = require('../bin/configuracoes/variaveis');
 const jwt = require('jsonwebtoken');
@@ -58,8 +59,7 @@ usuarioControle.prototype.update = async (req, res) =>{
 };
 
 
-usuarioControle.prototype.updateSenha = async (req, res) =>{   
-  let contratoValidacao = new validacao();
+usuarioControle.prototype.updateSenha = async (req, res) =>{     
   try {              
     if (req.body.senha != null){
       req.body.senha = md5(req.body.senha);
@@ -71,10 +71,9 @@ usuarioControle.prototype.updateSenha = async (req, res) =>{
   }   
 };
 
-usuarioControle.prototype.autenticar = async (req, res) => {
-
-  let _validationContract = new validacao();
-  if (!_validationContract.isValid()) {
+usuarioControle.prototype.autenticar = async (req, res) => {  
+  let contratoValidacao = new validacao();    
+  if (!contratoValidacao.isValid()) {
       res.status(400).send({ message: 'Não foi possível efetuar o login', validacao: _validationContract.errors() })
       return;
   }
@@ -86,7 +85,30 @@ usuarioControle.prototype.autenticar = async (req, res) => {
           token: jwt.sign({ user: usuarioEncontrado }, variaveis.Security.secretyKey)
       }) 
   } else {
-      res.status(404).send({ message: 'Usuário e senha informado são inválido!' });
+      res.status(404).send({ message: 'Usuário ou senha inexistente!' });
   }
-}
+};
+
+usuarioControle.prototype.gerarNovaSenha = async (req, res) =>{     
+  try { 
+    const senha = gerarSenha();        
+    await _repo.updateSenha(req.params.id,md5(senha));  
+    let _emailControle = new emailControle();
+    req.body.senha = senha;    
+    const data = await _emailControle.enviarEmail(req, res);    
+    res.status(200).send(data);
+  } catch (error) {        
+    res.status(500).send({ message: 'Erro no processamento', error: err });
+  }   
+};
+
+function gerarSenha() {
+  let senha = '';
+  let numeros = [];
+  for (let index = 0; index < 6; index++) {
+    numeros.push(Math.floor(Math.random() * 10));
+  }
+  return senha.concat(numeros[0], numeros[1], numeros[2], numeros[3], numeros[4], numeros[5]);
+};
+
 module.exports = usuarioControle;
