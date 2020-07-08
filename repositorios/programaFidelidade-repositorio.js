@@ -9,14 +9,13 @@ class programaFidelidadeRepositorio{
     async update(id, data) {   
         try{
          return await model.sequelize.transaction(async(t) => {
-                await model.ProgramaFidelidade.destroy({where: {id}},{t}); 
+                await model.ProgramaFidelidade.destroy({where:{id},transaction: t}); 
                 await model.ProgramaFidelidade.create(data,{include: 
-                    { association: 'CampoItemProgramaFidelidades' }},
-                    {t});                
+                    { association: 'CampoItemProgramaFidelidades' },transaction: t});
             });   
         }catch(err){
             console.log('Erro ao tentar atualizar um ProgramaFidelidade e seus CampoItemProgramaFidelidades : ', err);
-            res.status(500).send({ message: 'Erro no processamento', error: err });
+          //  res.status(500).send({ message: 'Erro no processamento', error: err });
         }    
     }
 
