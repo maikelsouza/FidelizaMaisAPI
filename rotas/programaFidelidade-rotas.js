@@ -13,6 +13,7 @@ rota.options('*', cors(utilsRota.corsOptions));
 rota.get("/", cors(utilsRota.corsOptions),autenticador,_ctrl.get);
 rota.get('/buscarPorUsuario/:id',cors(utilsRota.corsOptions), autenticador,_ctrl.buscarPorUsuario);
 rota.get('/buscarPorEstabelecimento/:id',cors(utilsRota.corsOptions), autenticador,_ctrl.buscarPorEstabelecimento);
+rota.get('/buscarPorEstabelecimentoEAtivo/:id',cors(utilsRota.corsOptions), autenticador,_ctrl.buscarPorEstabelecimentoEAtivo);
 rota.get('/:id',cors(utilsRota.corsOptions), autenticador,_ctrl.getById);
 rota.post('/',cors(utilsRota.corsOptions), autenticador,_ctrl.post);
 rota.put('/:id',cors(utilsRota.corsOptions), autenticador,_ctrl.update);

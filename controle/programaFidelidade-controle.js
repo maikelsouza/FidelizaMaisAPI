@@ -57,4 +57,13 @@ programaFidelidadeControle.prototype.buscarPorUsuario = async (req, res) =>{
       }
   };      
 
+  programaFidelidadeControle.prototype.buscarPorEstabelecimentoEAtivo = async (req, res) =>{     
+    try {             
+      let data = await _repo.buscarPorEstabelecimentoEAtivo(req.params.id);
+      res.status(200).send(data);
+    } catch (error) {      
+      res.status(500).send({ message: 'Erro no processamento', error: err });
+    }
+};      
+
 module.exports = programaFidelidadeControle;
