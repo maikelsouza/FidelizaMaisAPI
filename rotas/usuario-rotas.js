@@ -19,6 +19,7 @@ rota.get("/buscarPorEmail/:email",cors(utilsRota.corsOptions),_ctrl.getByEmail);
 rota.get('/buscarSemEstabelecimentosAssociados',cors(utilsRota.corsOptions),autenticador, _ctrl.getUsuariosSemEstabelecimentosAssociados);
 rota.get('/:id',cors(utilsRota.corsOptions),autenticador, _ctrl.getById);
 rota.post('/',cors(utilsRota.corsOptions),autenticador, _ctrl.post);
+rota.post('/novoCliente',cors(utilsRota.corsOptions), _ctrl.post);
 rota.put('/:id',cors(utilsRota.corsOptions), autenticador,_ctrl.update);
 rota.put('/atualizarSenha/:id',cors(utilsRota.corsOptions), _ctrl.updateSenha);
 rota.put('/gerarNovaSenha/:id',cors(utilsRota.corsOptions),_ctrl.gerarNovaSenha);           
