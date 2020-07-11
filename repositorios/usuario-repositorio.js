@@ -7,7 +7,7 @@ class usuarioRepositorio{
 
 
     async create(data){  
-        model.Usuario.create(data);
+        return await model.Usuario.create(data);
      }
 
     async update(id, data) {
