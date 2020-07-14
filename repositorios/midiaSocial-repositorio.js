@@ -6,13 +6,13 @@ class midiaSocialRepositorio{
 
 
     async update(id, data) {
-        model.MidiaSocial.update(data,{
+        await model.MidiaSocial.update(data,{
             where: { id: id }   
         });
     }
 
     async create(data){  
-        model.MidiaSocial.create(data);
+        await model.MidiaSocial.create(data);
      }
 
 }

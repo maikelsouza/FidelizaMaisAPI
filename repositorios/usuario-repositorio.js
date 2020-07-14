@@ -6,7 +6,7 @@ class usuarioRepositorio{
     constructor(){}
 
 
-    async create(data){  
+    async create(data){          
         return await model.Usuario.create(data);
      }
 
@@ -23,7 +23,7 @@ class usuarioRepositorio{
         );
     }
 
-    async getAll() {
+    async getAll() {        
         return await model.
                 Usuario.findAll({attributes: ['id', 'nome', 'ativo', 'cpf', 'email'],               
                 order: [                
