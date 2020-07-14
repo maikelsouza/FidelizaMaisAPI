@@ -1,7 +1,7 @@
 exports.post = async (repository, contratoValidacao, req, res) => {
     try {
-        let data = req.body;
-        console.log('base', data);
+        let data = req.body;        
+        console.info('Post: ', data);
         if (!contratoValidacao.isValid()) {
             res.status(400).send({
                 message: 'Existem dados inválidos na sua requisição',
@@ -12,7 +12,7 @@ exports.post = async (repository, contratoValidacao, req, res) => {
         let resultado = await repository.create(data);
         res.status(201).send(resultado);
     } catch (err) {
-        console.log('Post com error, motivo: ', err);
+        console.error('Post com error, motivo: ', err);
         res.status(500).send({ message: 'Erro no processamento', error: err });
     }
 };
@@ -20,6 +20,7 @@ exports.post = async (repository, contratoValidacao, req, res) => {
 exports.put = async (repository, contratoValidacao, req, res) => {
     try {        
         let data = req.body;
+        console.info('Put: ', data);
         if (!contratoValidacao.isValid()) {
             res.status(400).send({
                 message: 'Existem dados inválidos na sua requisição',
@@ -31,7 +32,7 @@ exports.put = async (repository, contratoValidacao, req, res) => {
         res.status(202).send(resultado);
 
     } catch (err) {
-        console.log('Put com error, motivo: ', err);
+        console.error('Put com error, motivo: ', err);
         res.status(500).send({ message: 'Erro no processamento', error: err });
     }
 };
@@ -41,7 +42,7 @@ exports.get = async (repository, req, res) => {
         let data = await repository.getAll();
         res.status(200).send(data);
     } catch (error) {
-        console.log('get com error, motivo: ', err);
+        console.error('get com error, motivo: ', err);
         res.status(500).send({ message: 'Erro no processamento', error: err });
     }
 };
@@ -56,7 +57,7 @@ exports.getById = async (repository, req, res) => {
             res.status(400).send({ message: 'O parametro Id precisa ser informado.' });
         }
     } catch (error) {
-        console.log('getById com error, motivo: ', err);
+        console.error('getById com error, motivo: ', err);
         res.status(500).send({ message: 'Erro no processamento', error: err });
     }
 };
@@ -71,7 +72,7 @@ exports.delete = async (repository, req, res) => {
             res.status(400).send({ message: 'O parametro Id precisa ser informado.' });
         }
     } catch (error) {
-        console.log('get com error, motivo: ', err);
+        console.error('get com error, motivo: ', err);
         res.status(500).send({ message: 'Erro no processamento', error: err });
     }
 };
