@@ -12,7 +12,7 @@ class estabelecimentoRepositorio{
     
 
      async create(data){              
-       model.Estabelecimento.create(data, {include: [ model.EnderecoEstabelecimento,
+        await model.Estabelecimento.create(data, {include: [ model.EnderecoEstabelecimento,
                         model.Telefone, model.MidiaSocial]});
     }
 
