@@ -74,7 +74,7 @@ usuarioControle.prototype.updateSenha = async (req, res) =>{
 usuarioControle.prototype.autenticar = async (req, res) => {  
   let contratoValidacao = new validacao();    
   if (!contratoValidacao.isValid()) {
-      res.status(400).send({ message: 'Não foi possível efetuar o login', validacao: _validationContract.errors() })
+      res.status(400).send({ message: 'Não foi possível efetuar o login', validation: contratoValidacao.errors() })
       return;
   }
   
