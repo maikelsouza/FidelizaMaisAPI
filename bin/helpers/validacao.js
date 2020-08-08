@@ -8,8 +8,14 @@ class ContratoValidacao {
         if (!value && value.length == 0)
             this._errors.push({ message: message });
     }
+    
     isTrue(value, message) {
         if (value)
+            this._errors.push({ message: message });
+    }
+
+    isFalse(value, message) {
+        if (!value)
             this._errors.push({ message: message });
     }
 
