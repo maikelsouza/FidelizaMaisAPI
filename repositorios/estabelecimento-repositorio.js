@@ -216,7 +216,7 @@ class estabelecimentoRepositorio{
                     await _midiaSocialRepositorio.create(midiaSocial3);
                 }
             }
-     }
+     }     
      
      async getByEstabelecimentoEEmailCliente(estabelecimentoId, email) {
         return await  model.Estabelecimento.findByPk(estabelecimentoId,{
@@ -234,8 +234,100 @@ class estabelecimentoRepositorio{
                   } 
             }
         })
-    }    
-
     }
+    
+    async getByEmail(email) {
+        return await model.
+        Estabelecimento.findOne(
+                {attributes: ['id'],
+                     where: {email}   
+                }
+            ); 
+    }  
+    
+    async getBySite(site) {
+        return await model.
+        Estabelecimento.findOne(
+                {attributes: ['id'],
+                     where: {site}   
+                }
+            ); 
+    }  
+
+    async getByCnpj(cnpj) {
+        return await model.
+        Estabelecimento.findOne(
+                {attributes: ['id'],
+                     where: {cnpj}   
+                }
+            ); 
+    }  
+
+    async getBySiteNotId(site, id) {
+        return await model.
+        Estabelecimento.findOne(
+            {attributes: ['id'],
+                where: {  
+                    [Op.and]: [
+                        {
+                            site:{
+                                [Op.eq]: site        
+                            }
+                        },
+                        {
+                            id:{
+                                [Op.ne]: id
+                            }
+                        }
+                    ]                      
+                }  
+            }); 
+    }
+    
+    async getByEmailNotId(email,id) {
+        return await model.
+        Estabelecimento.findOne(
+            {attributes: ['id'],
+                where: {  
+                    [Op.and]: [
+                        {
+                            email:{
+                                [Op.eq]: email        
+                            }
+                        },
+                        {
+                            id:{
+                                [Op.ne]: id
+                            }
+                        }
+                    ]                      
+                }   
+            }); 
+    } 
+    
+    async getByCnpjNotId(cnpj,id) {
+        return await model.
+        Estabelecimento.findOne(
+            {attributes: ['id'],
+                where: {  
+                    [Op.and]: [
+                        {
+                            cnpj:{
+                                [Op.eq]: cnpj        
+                            }
+                        },
+                        {
+                            id:{
+                                [Op.ne]: id
+                            }
+                        }
+                    ]                      
+                }   
+            }); 
+    }
+
+
+
+}
 
 module.exports = estabelecimentoRepositorio;

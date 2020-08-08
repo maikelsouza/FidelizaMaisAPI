@@ -14,10 +14,25 @@ function usuarioControle(){
 
 }
 
-usuarioControle.prototype.post = async (req, res) =>{    
-  let contratoValidacao = new validacao();    
-  req.body.senha = md5(req.body.senha);
-  controleBase.post(_repo, contratoValidacao, req, res);     
+usuarioControle.prototype.post = async (req, res) => {
+  let contratoValidacao = new validacao();
+  try {
+    const cpf = req.body.cpf;
+    let usuario = await _repo.getByEmail(req.body.email)
+    if (usuario) {
+      contratoValidacao.isTrue(true, "Já existe um usuário com esse email!")
+    }
+    if (cpf) {
+      usuario = await _repo.getByCpf(cpf)
+      if (usuario) {
+        contratoValidacao.isTrue(true, "Já existe um usuário com esse cpf")
+      }
+    }
+   req.body.senha = md5(req.body.senha);
+   controleBase.post(_repo, contratoValidacao, req, res);    
+  } catch (error) {
+    res.status(500).send({ message: 'Erro no processamento', error: err });
+  }
 };
 
 usuarioControle.prototype.put = async (req, res) =>{ 
@@ -52,10 +67,24 @@ usuarioControle.prototype.getUsuariosSemEstabelecimentosAssociados = async (req,
 
 usuarioControle.prototype.update = async (req, res) =>{   
   let contratoValidacao = new validacao();
-  if (req.body.senha != null){
-    req.body.senha = md5(req.body.senha);
-  }
-  controleBase.put(_repo, contratoValidacao, req, res);    
+  try {
+    const cpf = req.body.cpf;
+    const id = req.body.id;    
+    let usuario = await _repo.getByEmailENotId(req.body.email,id);
+    if (usuario) {
+      contratoValidacao.isTrue(true, "Já existe um usuário com esse email!");
+    }
+    if (cpf) {
+      usuario = await _repo.getByCpfENotId(cpf,id)
+      if (usuario) {
+        contratoValidacao.isTrue(true, "Já existe um usuário com esse cpf");
+      }
+    } 
+
+    controleBase.put(_repo, contratoValidacao, req, res);    
+  } catch (error) {
+    res.status(500).send({ message: 'Erro no processamento', error: err });
+  }   
 };
 
 

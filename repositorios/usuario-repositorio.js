@@ -62,6 +62,68 @@ class usuarioRepositorio{
                  );
     } 
 
+    async getByEmailENotId(email,id) {
+        return await model.
+            Usuario.findOne(
+                {attributes: { exclude: ['senha']}, 
+                where: {  
+                    [Op.and]: [
+                        {
+                            email:{
+                                [Op.eq]: email        
+                            }
+                        },
+                        {
+                            id:{
+                                [Op.ne]: id
+                            }
+                        }
+
+                    ]                      
+                }     
+            }                      
+        );
+        // EXEMPLO:
+        // SELECT `id`, `nome`, `sexo`, `email`, `dataNascimento`, `cpf`, `ativo`, `grupoUsuarioId`, `createdAt`, `updatedAt`, `GrupoUsuarioId` 
+        // FROM `Usuarios` AS `Usuario` WHERE (`Usuario`.`email` = 'danilo.souza@gmail.com' AND `Usuario`.`id` != 73) LIMIT 1;
+    } 
+
+    async getByCpfENotId(cpf,id) {
+        return await model.
+            Usuario.findOne(
+                {attributes: { exclude: ['senha']}, 
+                where: {  
+                    [Op.and]: [
+                        {
+                            cpf:{
+                                [Op.eq]: cpf        
+                            }
+                        },
+                        {
+                            id:{
+                                [Op.ne]: id
+                            }
+                        }
+
+                    ]                      
+                }     
+            }                      
+        );
+        // EXEMPLO:
+        // SELECT `id`, `nome`, `sexo`, `email`, `dataNascimento`, `cpf`, `ativo`, `grupoUsuarioId`, `createdAt`, `updatedAt`, `GrupoUsuarioId` 
+        // FROM `Usuarios` AS `Usuario` WHERE (`Usuario`.`cpf` = '123456789' AND `Usuario`.`id` != 73) LIMIT 1;
+    } 
+
+    async getByCpf(cpf) {
+        return await model.
+            Usuario.findOne(
+                {attributes: { exclude: ['senha']}, 
+                    where: {cpf}   
+                }
+            ); 
+    }      
+    
+    
     async getById(id) {
         return await model.
         Usuario.findByPk(id,{
