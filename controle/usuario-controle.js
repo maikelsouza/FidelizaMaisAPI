@@ -101,13 +101,16 @@ usuarioControle.prototype.updateSenha = async (req, res) =>{
 };
 
 usuarioControle.prototype.autenticar = async (req, res) => {  
+
   let contratoValidacao = new validacao();    
-  if (!contratoValidacao.isValid()) {
-      res.status(400).send({ message: 'Não foi possível efetuar o login', validation: contratoValidacao.errors() })
-      return;
-  }
-  
   let usuarioEncontrado = await _repo.getByEmaileSenha(req.body.email, md5(req.body.senha));  
+
+  contratoValidacao.isFalse(usuarioEncontrado[0].ativo,"O usuário está inativo!")
+
+  if (!contratoValidacao.isValid()) {
+    res.status(400).send({ message: 'Não foi possível efetuar o login', validation: contratoValidacao.errors() })
+    return;
+  }
   if (usuarioEncontrado.length > 0) {    
        res.status(200).send({
           usuario: usuarioEncontrado,
