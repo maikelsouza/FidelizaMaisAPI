@@ -16,7 +16,8 @@ module.exports = {
         type: Sequelize.STRING
       },
       cnpj: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        unique: true
       },
       ativo: {
         type: Sequelize.BOOLEAN,
