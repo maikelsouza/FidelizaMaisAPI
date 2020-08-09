@@ -102,22 +102,22 @@ usuarioControle.prototype.updateSenha = async (req, res) =>{
 
 usuarioControle.prototype.autenticar = async (req, res) => {  
 
-  let contratoValidacao = new validacao();    
   let usuarioEncontrado = await _repo.getByEmaileSenha(req.body.email, md5(req.body.senha));  
+  if (usuarioEncontrado.length > 0) {        
+    let contratoValidacao = new validacao();    
+    contratoValidacao.isFalse(usuarioEncontrado[0].ativo,"O usuário está inativo!")
 
-  contratoValidacao.isFalse(usuarioEncontrado[0].ativo,"O usuário está inativo!")
-
-  if (!contratoValidacao.isValid()) {
-    res.status(400).send({ message: 'Não foi possível efetuar o login', validation: contratoValidacao.errors() })
-    return;
-  }
-  if (usuarioEncontrado.length > 0) {    
-       res.status(200).send({
+    if (!contratoValidacao.isValid()) {
+      res.status(400).send({ message: 'Não foi possível efetuar o login', validation: contratoValidacao.errors() })
+      return;
+    }
+    
+    res.status(200).send({
           usuario: usuarioEncontrado,
           token: jwt.sign({ user: usuarioEncontrado }, variaveis.Security.secretyKey)
       }) 
   } else {
-      res.status(404).send({ message: 'Usuário ou senha inexistente!' });
+      res.status(404).send({ message: 'Usuário inexistente ou senha incorreta!' });
   }
 };
 
