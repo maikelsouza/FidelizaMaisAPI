@@ -126,7 +126,8 @@ usuarioControle.prototype.gerarNovaSenha = async (req, res) =>{
     const senha = gerarSenha();        
     await _repo.updateSenha(req.params.id,md5(senha));  
     let _emailControle = new emailControle();
-    req.body.senha = senha;    
+    req.body.senha = senha;   
+    req.body.text = req.body.text + ' '  + req.body.senha;
     const data = await _emailControle.enviarEmail(req, res);    
     res.status(200).send(data);
   } catch (error) {        
