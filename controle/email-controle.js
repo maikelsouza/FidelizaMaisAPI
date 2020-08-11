@@ -27,12 +27,9 @@ emailControle.prototype.enviarEmail = async (req, res) => {
     await transporter.sendMail({
       from: 'Fideliza Mais <fidelizamais@appfidelizamais.com.br>',            
       to: req.body.to,
-      //to: 'maikel.souza@gmail.com',
-      //subject: "Assunto do Email",
       subject: req.body.subject,
-      //text: 'Esse é o corpo de e-mail.....',
-      text: req.body.text + req.body.senha,
-      //html: 'transporter.close() antes do send em <strong>html</strong>'
+      text: req.body.text,
+      html: req.body.html
     })
     res.status(200).send({ message: 'Deu certo!' });
   } catch (error) {
