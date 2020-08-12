@@ -1,7 +1,7 @@
 const model = require('../config/modelLoader');
 const Op = model.Sequelize.Op
 
-class TotalPontosClienteProgramaFidelidadeRepositorio{
+class totalPontosClienteProgramaFidelidadeRepositorio{
 
     constructor(){}
 
@@ -31,7 +31,19 @@ class TotalPontosClienteProgramaFidelidadeRepositorio{
                },    
             });
     }    
+
+    async buscarPorIdUsuarioEAtivo(usuarioId, ativo) {
+        return await model.
+           TotalPontosClienteProgramaFidelidade.findAll({
+                    attributes: ['id', 'usuarioId', 'programaFidelidadeId','totalPontos'],
+                    where: {  
+                       [Op.and]: 
+                       [{usuarioId}, {ativo: ativo}
+                      ]
+                 },    
+              });
+      }    
      
 }
 
-module.exports = TotalPontosClienteProgramaFidelidadeRepositorio;
+module.exports = totalPontosClienteProgramaFidelidadeRepositorio;

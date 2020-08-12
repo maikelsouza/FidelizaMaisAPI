@@ -1,12 +1,10 @@
 'use strict'
 
-const repositorio = require('../repositorios/TotalPontosClienteProgramaFidelidade-repositorio');
+const repositorio = require('../repositorios/totalPontosClienteProgramaFidelidade-repositorio');
 const controleBase = require('../bin/base/controle-base');
 const validacao = require('../bin/helpers/validacao');
 
-
 const _repo = new repositorio();
-
 
 function totalPontosClienteProgramaFidelidadeControle(){
 
@@ -38,6 +36,15 @@ totalPontosClienteProgramaFidelidadeControle.prototype.countUsuarioIdAtivo = asy
 totalPontosClienteProgramaFidelidadeControle.prototype.getUsuarioIdProgramaFidelidadeIdAtivo = async (req, res) =>{      
   try {          
     let data = await _repo.getUsuarioIdProgramaFidelidadeIdAtivo(req.params.usuarioId,req.params.programaFidelidadeId);
+    res.status(200).send(data);
+  } catch (error) {        
+      res.status(500).send({ message: 'Erro no processamento', error: err });
+  }   
+};
+
+totalPontosClienteProgramaFidelidadeControle.prototype.buscarPorIdUsuarioEAtivo = async (req, res) =>{      
+  try {          
+    let data = await _repo.buscarPorIdUsuarioEAtivo(req.params.id,JSON.parse(req.params.ativo));
     res.status(200).send(data);
   } catch (error) {        
       res.status(500).send({ message: 'Erro no processamento', error: err });
