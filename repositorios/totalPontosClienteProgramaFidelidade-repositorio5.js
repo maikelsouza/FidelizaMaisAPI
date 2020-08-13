@@ -35,7 +35,7 @@ class totalPontosClienteProgramaFidelidadeRepositorio{
     async buscarPorIdUsuarioEAtivo(usuarioId, ativo) {
         return await model.
            TotalPontosClienteProgramaFidelidade.findAll({
-                    attributes: ['id', 'usuarioId', 'programaFidelidadeId','totalPontos'],
+                    attributes: ['id', 'usuarioId', 'totalPontos', 'programaFidelidadeId'],
                     where: {  
                        [Op.and]: 
                        [{usuarioId}, {ativo: ativo}
