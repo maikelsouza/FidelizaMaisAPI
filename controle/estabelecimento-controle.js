@@ -116,4 +116,15 @@ estabelecimentoControle.prototype.getByEstabelecimentoEEmailCliente = async (req
   }
 };
 
+estabelecimentoControle.prototype.buscarClientesAssociadosPorIdEstabelecimento = async (req, res) => {
+  try {
+    let data = await _repo.buscarClientesAssociadosPorIdEstabelecimento(req.params.id);
+    res.status(200).send(data);
+  } catch (error) {
+    res.status(500).send({ message: 'Erro no processamento', error: err });
+  }
+};
+
+
+
 module.exports = estabelecimentoControle;

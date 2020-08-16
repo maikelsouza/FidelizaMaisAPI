@@ -235,6 +235,24 @@ class estabelecimentoRepositorio{
             }
         })
     }
+          
+    async buscarClientesAssociadosPorIdEstabelecimento(id) {
+        return await  model.Estabelecimento.findByPk(id,{
+            attributes: [],
+            include : {
+                association : 'usuarios',
+                attributes: ['id','nome', 'email'],    
+                required: true,                            
+                through: { 
+                    attributes: ['ativo']
+                  } 
+            },
+            order: [     
+                ['usuarios', 'nome', 'ASC'],                              
+                ['usuarios', 'email', 'ASC']                                
+            ],           
+        })
+    }
     
     async getByEmail(email) {
         return await model.
