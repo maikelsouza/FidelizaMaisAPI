@@ -58,7 +58,7 @@ class programaFidelidadeRepositorio{
 
       async buscarPorEstabelecimento(id) {
         return await model.ProgramaFidelidade.findAll(
-            {attributes: ['id', 'nome', 'dataExpiracao', 'ativo', 'regra'],
+            {attributes: ['id', 'nome', 'dataExpiracao', 'ativo', 'regra', 'descricao'],
                 include: { association: 'CampoItemProgramaFidelidades',
                            attributes: ['id', 'nome','descricao','dataExpiracao','quantidadePontos'], 
                            required: true
@@ -75,7 +75,7 @@ class programaFidelidadeRepositorio{
 
       async buscarPorEstabelecimentoEAtivo(id) {
         return await model.ProgramaFidelidade.findAll(
-            {attributes: ['id', 'nome', 'dataExpiracao', 'ativo', 'regra'],
+            {attributes: ['id', 'nome', 'dataExpiracao', 'ativo', 'regra', 'descricao'],
                 include: { association: 'CampoItemProgramaFidelidades',
                            attributes: ['id', 'nome','descricao','dataExpiracao','quantidadePontos'], 
                            required: true
