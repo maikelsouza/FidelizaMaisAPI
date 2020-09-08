@@ -21,6 +21,17 @@ class clienteEstabelecimentoRepositorio{
         );          
     }
 
+    async buscarPorUsuarioIdEEstabelecimentoId(usuarioId, estabelecimentoId) {                           
+        return await model.ClienteEstabelecimento.findOne(
+            {attributes: ['id', 'estabelecimentoId', 'usuarioId', 'dataCriacao'],                                 
+                 where: {  
+                    [Op.and]: 
+                    [{usuarioId: usuarioId}, {estabelecimentoId: estabelecimentoId}]
+                },                   
+            }
+        );          
+    }
+
     async deletePorUsuarioEEstabelecimento(usuarioId, estabelecimentoId) {             
         model.ClienteEstabelecimento.destroy({
                 where: { 

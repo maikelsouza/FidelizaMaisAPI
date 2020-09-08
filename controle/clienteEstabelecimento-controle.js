@@ -34,4 +34,19 @@ clienteEstabelecimentoControle.prototype.deletePorUsuarioEEstabelecimento = asyn
   }    
 };
 
+clienteEstabelecimentoControle.prototype.buscarPorUsuarioIdEEstabelecimentoId = async (req, res) =>{     
+  try {
+    const usuarioId = req.params.usuarioId;
+    const estabelecimentoId = req.params.estabelecimentoId;           
+    const data = await _repo.buscarPorUsuarioIdEEstabelecimentoId(usuarioId,estabelecimentoId);
+    res.status(200).send(data);
+  } catch (error) {      
+    res.status(500).send({ message: 'Erro no processamento', error: err });
+  }    
+};
+
+
+
+
+
 module.exports = clienteEstabelecimentoControle;
