@@ -241,7 +241,7 @@ class estabelecimentoRepositorio{
             attributes: [],
             include : {
                 association : 'usuarios',
-                attributes: ['id','nome', 'email'],    
+                attributes: ['id','nome', 'email', 'telefone'],    
                 required: true,                            
                 through: { 
                     attributes: ['ativo']

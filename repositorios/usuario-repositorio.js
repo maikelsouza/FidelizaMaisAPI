@@ -25,7 +25,7 @@ class usuarioRepositorio{
 
     async getAll() {        
         return await model.
-                Usuario.findAll({attributes: ['id', 'nome', 'ativo', 'cpf', 'email'],               
+                Usuario.findAll({attributes: ['id', 'nome', 'ativo', 'cpf', 'email', 'telefone'],               
                 order: [                
                     ['nome', 'ASC']
                 ]
@@ -127,7 +127,7 @@ class usuarioRepositorio{
     async getById(id) {
         return await model.
         Usuario.findByPk(id,{
-                attributes: ['id', 'nome', 'ativo', 'email', 'cpf', 'dataNascimento', 'sexo']
+                attributes: ['id', 'nome', 'ativo', 'email', 'telefone', 'cpf', 'dataNascimento', 'sexo']
             })
     }
 

@@ -7,6 +7,7 @@ module.exports = (sequelize, DataTypes) => {
       values: ['Masculino','Feminino']
     }, 
     email: DataTypes.STRING,
+    telefone: DataTypes.STRING,
     dataNascimento: DataTypes.DATE,
     senha: DataTypes.STRING,
     cpf: DataTypes.STRING,

@@ -18,9 +18,13 @@ usuarioControle.prototype.post = async (req, res) => {
   let contratoValidacao = new validacao();
   try {
     const cpf = req.body.cpf;
-    let usuario = await _repo.getByEmail(req.body.email)
-    if (usuario) {
-      contratoValidacao.isTrue(true, "Já existe um usuário com esse email!")
+    const email = req.body.email;
+    let usuario = null;
+    if (email != null && email.trim() != ''){
+      usuario = await _repo.getByEmail(email)
+      if (usuario) {
+        contratoValidacao.isTrue(true, "Já existe um usuário com esse email!")
+      }      
     }
     if (cpf) {
       usuario = await _repo.getByCpf(cpf)
@@ -70,9 +74,13 @@ usuarioControle.prototype.update = async (req, res) =>{
   try {
     const cpf = req.body.cpf;
     const id = req.body.id;    
-    let usuario = await _repo.getByEmailENotId(req.body.email,id);
-    if (usuario) {
-      contratoValidacao.isTrue(true, "Já existe um usuário com esse email!");
+    const email = req.body.email;
+    let usuario = null;
+    if (email != null && email.trim() != ''){
+      usuario = await _repo.getByEmailENotId(email,id);
+      if (usuario) {
+        contratoValidacao.isTrue(true, "Já existe um usuário com esse email!")
+      }      
     }
     if (cpf) {
       usuario = await _repo.getByCpfENotId(cpf,id)
