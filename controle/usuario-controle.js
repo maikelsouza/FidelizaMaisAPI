@@ -19,6 +19,7 @@ usuarioControle.prototype.post = async (req, res) => {
   try {
     const cpf = req.body.cpf;
     const email = req.body.email;
+    const telefone = req.body.telefone;
     let usuario = null;
     if (email != null && email.trim() != ''){
       usuario = await _repo.getByEmail(email)
@@ -32,7 +33,14 @@ usuarioControle.prototype.post = async (req, res) => {
         contratoValidacao.isTrue(true, "Já existe um usuário com esse cpf")
       }
     }
+    if (telefone != null && telefone.trim() != ''){
+      usuario = await _repo.getByTelefone(telefone);
+      if (usuario) {
+        contratoValidacao.isTrue(true, "Já existe um usuário com esse telefone!")
+      }   
+    }
    req.body.senha = md5(req.body.senha);
+   req.body.telefone = setNullTelefoneEmBranco(req.body.telefone);
    controleBase.post(_repo, contratoValidacao, req, res);    
   } catch (error) {
     res.status(500).send({ message: 'Erro no processamento', error: err });
@@ -75,6 +83,7 @@ usuarioControle.prototype.update = async (req, res) =>{
     const cpf = req.body.cpf;
     const id = req.body.id;    
     const email = req.body.email;
+    const telefone = req.body.telefone;
     let usuario = null;
     if (email != null && email.trim() != ''){
       usuario = await _repo.getByEmailENotId(email,id);
@@ -87,8 +96,14 @@ usuarioControle.prototype.update = async (req, res) =>{
       if (usuario) {
         contratoValidacao.isTrue(true, "Já existe um usuário com esse cpf");
       }
+    }
+    if (telefone != null && telefone.trim() != ''){
+      usuario = await _repo.getByTelefoneENotId(telefone,id);
+      if (usuario) {
+        contratoValidacao.isTrue(true, "Já existe um usuário com esse telefone!")
+      }      
     } 
-
+    req.body.telefone = setNullTelefoneEmBranco( req.body.telefone);
     controleBase.put(_repo, contratoValidacao, req, res);    
   } catch (error) {
     res.status(500).send({ message: 'Erro no processamento', error: err });
@@ -151,5 +166,12 @@ function gerarSenha() {
   }
   return senha.concat(numeros[0], numeros[1], numeros[2], numeros[3], numeros[4], numeros[5]);
 };
+
+function setNullTelefoneEmBranco(telefone){
+  if (telefone == null){
+    return telefone;    
+  }
+  return  telefone.trim() === '' ? null : telefone;
+}
 
 module.exports = usuarioControle;

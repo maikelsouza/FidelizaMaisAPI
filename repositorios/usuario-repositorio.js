@@ -114,11 +114,47 @@ class usuarioRepositorio{
         // FROM `Usuarios` AS `Usuario` WHERE (`Usuario`.`cpf` = '123456789' AND `Usuario`.`id` != 73) LIMIT 1;
     } 
 
+    async getByTelefoneENotId(telefone,id) {
+        return await model.
+            Usuario.findOne(
+                {attributes: { exclude: ['senha']}, 
+                where: {  
+                    [Op.and]: [
+                        {
+                            telefone:{
+                                [Op.eq]: telefone        
+                            }
+                        },
+                        {
+                            id:{
+                                [Op.ne]: id
+                            }
+                        }
+
+                    ]                      
+                }     
+            }                      
+        );
+        // EXEMPLO:
+        // SELECT `id`, `nome`, `sexo`, `email`, `dataNascimento`, `cpf`, `ativo`, `grupoUsuarioId`, `createdAt`, `updatedAt`, `GrupoUsuarioId` 
+        // FROM `Usuarios` AS `Usuario` WHERE (`Usuario`.`telefone` = '123456789' AND `Usuario`.`id` != 73) LIMIT 1;
+    } 
+
+
     async getByCpf(cpf) {
         return await model.
             Usuario.findOne(
                 {attributes: { exclude: ['senha']}, 
                     where: {cpf}   
+                }
+            ); 
+    }      
+
+    async getByTelefone(telefone) {
+        return await model.
+            Usuario.findOne(
+                {attributes: { exclude: ['senha']}, 
+                    where: {telefone}   
                 }
             ); 
     }      
