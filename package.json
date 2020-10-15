@@ -1,6 +1,6 @@
 {
   "name": "fidelizamais.api",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Api feita em nodeJs para a utilização do aplicativo Fideliza Mais",
   "main": "server.js",
   "scripts": {
