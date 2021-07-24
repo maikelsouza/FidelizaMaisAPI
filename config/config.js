@@ -1,29 +1,27 @@
 
 module.exports = {
-    "development": {
-      "username": "fidelizamais",
-      //"username": "root",
-      "password": "AQKpza87141",
-      "database": "fidelizamais",
-      "host": "mysql669.umbler.com",
-     //  "host": "127.0.0.1",
+    "development": {      
+      "username": "",
+      "password": "",
+      "database": "database_development",
+      "host"    : "127.0.0.1",
       "dialect": "mysql",
       "timezone": "America/Sao_Paulo",
        "port" : "41890"       
     },
     "test": {
-      "username": "root",
-      "password": null,
+      "username": "",
+      "password": "",
       "database": "database_test",
-      "host": "127.0.0.1",
+      "host"    : "127.0.0.1",
       "timezone": "America/Sao_Paulo",
       "dialect": "mysql"
     },
     "production": {
-      "username": "root",
-      "password": null,
+      "username": "",
+      "password": "",
       "database": "database_production",
-      "host": "127.0.0.1",
+      "host"    : "127.0.0.1",
       "timezone": "America/Sao_Paulo",
       "dialect": "mysql"
     }

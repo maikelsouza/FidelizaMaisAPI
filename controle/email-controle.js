@@ -6,12 +6,12 @@ function emailControle(){}
 
 function getTransport() {
   let transporter = nodemailer.createTransport({
-    host: "smtp.umbler.com",
-    port: 587,
+    host: "",
+    port: "",
     secure: false,
     auth: {
-      user: "fidelizamais@appfidelizamais.com.br",
-      pass: "mkl86233@"
+      user: "",
+      pass: ""
     },
     tls: {
       rejectUnauthorized: false
@@ -25,8 +25,8 @@ emailControle.prototype.enviarEmail = async (req, res) => {
   try {
     transporter = getTransport();
     await transporter.sendMail({
-      from: 'Fideliza Mais <fidelizamais@appfidelizamais.com.br>',            
-      to: req.body.to,
+      from: '',                  
+      to: '',
       subject: req.body.subject,
       text: req.body.text,
       html: req.body.html
