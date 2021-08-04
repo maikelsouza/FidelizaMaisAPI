@@ -12,7 +12,7 @@ exports.post = async (repository, contratoValidacao, req, res) => {
         let resultado = await repository.create(data);
         res.status(201).send(resultado);
     } catch (err) {
-        console.error('Post com error, motivo: ', err);
+        console.error('Post com error, motivo: ', err); 
         res.status(500).send({ message: 'Erro no processamento', error: err });
     }
 };
